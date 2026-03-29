@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Weather Predictor</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="background-animation"></div>
+
+<div class="glass-container">
+
+<header>
+
+<div class="logo">Weather Forecasting – Linear Regression</div>
+
+<nav>
+<button onclick="app.showPage('home')" class="nav-btn active">Home</button>
+<button onclick="app.showPage('history')" class="nav-btn">History</button>
+</nav>
+
+</header>
+
+
+<main id="home" class="page active">
+
+<h1>Weather Prediction</h1>
+
+<p>Powered by Linear Regression using Indian Weather Dataset</p>
+
+<form id="prediction-form">
+
+<div class="input-group">
+<label>City</label>
+
+<select id="city-input">
+<option>Delhi</option>
+<option>Mumbai</option>
+<option>Bangalore</option>
+<option>Chennai</option>
+<option>Kolkata</option>
+<option>Hyderabad</option>
+<option>Kochi</option>
+<option>Kozhikode</option>
+<option>Pune</option>
+<option>Ahmedabad</option>
+</select>
+
+</div>
+
+<div class="input-group">
+<label>Date</label>
+<input type="date" id="date-input" required>
+</div>
+
+<div class="input-group">
+<label>Time</label>
+<input type="time" id="time-input" required step="60">
+</div>
+
+<button type="submit" class="cta-btn">
+Predict Weather
+</button>
+
+</form>
+
+</main>
+
+
+
+<main id="prediction" class="page">
+
+<button onclick="app.showPage('home')" class="back-link">
+← Back
+</button>
+
+<div class="result-card">
+
+<h2 id="res-city">City</h2>
+
+<div class="weather-icon" id="res-icon">☀️</div>
+
+<div class="temp-display">
+<span id="res-value">--</span>
+<span id="temp-unit">°C</span>
+</div>
+
+<div id="res-condition" class="weather-text"></div>
+
+
+<div class="unit-toggles">
+
+<button id="tempToggle" class="toggle-btn">°C / °F</button>
+<button id="windToggle" class="toggle-btn">km/h / m/s</button>
+
+</div>
+
+
+<div style="margin-top:20px">
+<canvas id="weatherChart"></canvas>
+</div>
+
+
+<div class="details">
+
+<div class="detail-item">
+<span>Humidity</span>
+<span id="res-humidity">--%</span>
+</div>
+
+<div class="detail-item">
+<span>Wind Speed</span>
+<span id="res-wind">-- km/h</span>
+</div>
+
+</div>
+
+<p class="ml-note">
+Prediction powered by trained linear regression model
+</p>
+
+</div>
+
+</main>
+
+
+
+<main id="history" class="page">
+
+<h2>Prediction History</h2>
+
+<div id="history-list" class="history-container"></div>
+
+<button onclick="app.clearHistory()" class="clear-btn">
+Clear History
+</button>
+
+</main>
+
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
